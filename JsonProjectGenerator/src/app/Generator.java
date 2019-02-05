@@ -1,8 +1,10 @@
 package app;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Set;
@@ -12,6 +14,10 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class Generator {
+	
+	private Generator(){};
+	
+	static StringBuilder strb = new StringBuilder();
 	
 	public static String parseFile(String filename) {
         
@@ -74,8 +80,12 @@ public class Generator {
 		return null;
 	}
 	
+	private static final String PRIVATE_STATIC = "private static";
+	private static final String PUBLIC_STATIC = "public static";
+	private static final String PUBLIC = "public";
 	private static int numObj = 0;
 	private static int numArr = 0;
+	
 	private static void parseJsonObject(JSONObject json, String param) {
 		Set<String> keys = json.keySet();
 		for (String keyName : keys) {
@@ -83,43 +93,54 @@ public class Generator {
 			String objectType = objectToString(obj);
 			String objectTypeShort = ("Integer".equals(objectType)) ? "Int" : objectType;
 			if (obj instanceof JSONObject) {
-				System.out.format(
+				strb.append(String.format(
 						"%s jsonObj%d = json.get%s(%s);\n\n",
 							objectType, ++numObj, objectType, keyName
-						);
+						));
 				
 				JSONObject jsonElement = (JSONObject) obj;
 				parseJsonObject(jsonElement, "jsonObj" + numObj);
 			} else if (obj instanceof JSONArray) {
-				System.out.format(
+				strb.append(String.format(
 						"%s jsonArr%d = json.get%s(%s);\n\n",
 							objectType, ++numArr, objectType,keyName
-						);
+						));
 				
 				JSONArray jsonArr = (JSONArray) obj;
 				for (int i = 0; i < jsonArr.length(); i++) {
 					Object objArr = jsonArr.get(i);
 					if (objArr instanceof JSONObject) {
-						System.out.format(
+						strb.append(String.format(
 								"%s jsonObj%d = jsonArr%d.get(%d);\n\n",
 								objArr.getClass().getSimpleName(), ++numObj, numArr, i
-								);
+								));
 						
 						parseJsonObject((JSONObject) objArr, "jsonObj" + numObj);
 					}
 				}
 			} else {
 				String funcParam = json.getClass().getSimpleName() + " " + param;
-				System.out.format(
-						"private static %s get%s(%s) { \n"
+				strb.append(String.format(
+						"%s %s get%s(%s) { \n"
 								+ "\treturn json.get%s(\"%s\");\n"
 								+ "}\n\n",
-								objectType, capFirst(keyName), funcParam, objectTypeShort, keyName
-						);
+								PUBLIC_STATIC, objectType, capFirst(keyName), funcParam, objectTypeShort, keyName
+						));
 			}
 		}
+		exportFile(strb);
 	}
 	
+	private static void exportFile(StringBuilder strb) {
+		File file = new File("java_class.txt");
+		try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
+		    writer.write(strb.toString());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+	}
+
 	private static String capFirst(String key) {
 		key = key.substring(0,1).toUpperCase() + key.substring(1);
 		return key;
