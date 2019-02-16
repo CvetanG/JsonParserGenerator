@@ -11,7 +11,7 @@
       "time": "2016-06-22T18:41:52.655959799Z", 
       "timeInForce": "FOK", 
       "type": "MARKET_ORDER", 
-      "units": "100", 
+      "units": 10.0, 
       "userID": <USERID>
     }, 
     {

@@ -1,0 +1,168 @@
+public static String getTime(JSONObject json) { 
+	return json.getString("time");
+}
+
+public static String getCloseoutBid(JSONObject json) { 
+	JSONArray jsonArr1 = json.getJSONArray("prices");
+	JSONObject jsonObj1 = (JSONObject) jsonArr1.get(0);
+	return jsonObj1.getString("closeoutBid");
+}
+
+public static String getShort(JSONObject json) { 
+	JSONArray jsonArr1 = json.getJSONArray("prices");
+	JSONObject jsonObj1 = (JSONObject) jsonArr1.get(0);
+	JSONObject jsonObj11 = jsonObj1.getJSONObject("unitsAvailable");
+	JSONObject jsonObj12 = jsonObj1.getJSONObject("default");
+	return jsonObj12.getString("short");
+}
+
+public static String getLong(JSONObject json) { 
+	JSONArray jsonArr1 = json.getJSONArray("prices");
+	JSONObject jsonObj1 = (JSONObject) jsonArr1.get(0);
+	JSONObject jsonObj11 = jsonObj1.getJSONObject("unitsAvailable");
+	JSONObject jsonObj12 = jsonObj1.getJSONObject("default");
+	return jsonObj12.getString("long");
+}
+
+public static String getShort(JSONObject json) { 
+	JSONArray jsonArr1 = json.getJSONArray("prices");
+	JSONObject jsonObj1 = (JSONObject) jsonArr1.get(0);
+	JSONObject jsonObj11 = jsonObj1.getJSONObject("unitsAvailable");
+	JSONObject jsonObj12 = jsonObj1.getJSONObject("reduceOnly");
+	return jsonObj12.getString("short");
+}
+
+public static String getLong(JSONObject json) { 
+	JSONArray jsonArr1 = json.getJSONArray("prices");
+	JSONObject jsonObj1 = (JSONObject) jsonArr1.get(0);
+	JSONObject jsonObj11 = jsonObj1.getJSONObject("unitsAvailable");
+	JSONObject jsonObj12 = jsonObj1.getJSONObject("reduceOnly");
+	return jsonObj12.getString("long");
+}
+
+public static String getShort(JSONObject json) { 
+	JSONArray jsonArr1 = json.getJSONArray("prices");
+	JSONObject jsonObj1 = (JSONObject) jsonArr1.get(0);
+	JSONObject jsonObj11 = jsonObj1.getJSONObject("unitsAvailable");
+	JSONObject jsonObj12 = jsonObj1.getJSONObject("reduceFirst");
+	return jsonObj12.getString("short");
+}
+
+public static String getLong(JSONObject json) { 
+	JSONArray jsonArr1 = json.getJSONArray("prices");
+	JSONObject jsonObj1 = (JSONObject) jsonArr1.get(0);
+	JSONObject jsonObj11 = jsonObj1.getJSONObject("unitsAvailable");
+	JSONObject jsonObj12 = jsonObj1.getJSONObject("reduceFirst");
+	return jsonObj12.getString("long");
+}
+
+public static String getShort(JSONObject json) { 
+	JSONArray jsonArr1 = json.getJSONArray("prices");
+	JSONObject jsonObj1 = (JSONObject) jsonArr1.get(0);
+	JSONObject jsonObj11 = jsonObj1.getJSONObject("unitsAvailable");
+	JSONObject jsonObj12 = jsonObj1.getJSONObject("openOnly");
+	return jsonObj12.getString("short");
+}
+
+public static String getLong(JSONObject json) { 
+	JSONArray jsonArr1 = json.getJSONArray("prices");
+	JSONObject jsonObj1 = (JSONObject) jsonArr1.get(0);
+	JSONObject jsonObj11 = jsonObj1.getJSONObject("unitsAvailable");
+	JSONObject jsonObj12 = jsonObj1.getJSONObject("openOnly");
+	return jsonObj12.getString("long");
+}
+
+public static String getCloseoutAsk(JSONObject json) { 
+	JSONArray jsonArr1 = json.getJSONArray("prices");
+	JSONObject jsonObj1 = (JSONObject) jsonArr1.get(0);
+	return jsonObj1.getString("closeoutAsk");
+}
+
+public static String getNegativeUnits(JSONObject json) { 
+	JSONArray jsonArr1 = json.getJSONArray("prices");
+	JSONObject jsonObj1 = (JSONObject) jsonArr1.get(0);
+	JSONObject jsonObj11 = jsonObj1.getJSONObject("quoteHomeConversionFactors");
+	return jsonObj11.getString("negativeUnits");
+}
+
+public static String getPositiveUnits(JSONObject json) { 
+	JSONArray jsonArr1 = json.getJSONArray("prices");
+	JSONObject jsonObj1 = (JSONObject) jsonArr1.get(0);
+	JSONObject jsonObj11 = jsonObj1.getJSONObject("quoteHomeConversionFactors");
+	return jsonObj11.getString("positiveUnits");
+}
+
+public static String getPrice(JSONObject json) { 
+	JSONArray jsonArr1 = json.getJSONArray("prices");
+	JSONObject jsonObj1 = (JSONObject) jsonArr1.get(0);
+	JSONArray jsonArr2 = json.getJSONArray("asks");
+	JSONObject jsonObj2 = (JSONObject) jsonArr2.get(0);
+	return jsonObj2.getString("price");
+}
+
+public static Integer getLiquidity(JSONObject json) { 
+	JSONArray jsonArr1 = json.getJSONArray("prices");
+	JSONObject jsonObj1 = (JSONObject) jsonArr1.get(0);
+	JSONArray jsonArr2 = json.getJSONArray("asks");
+	JSONObject jsonObj2 = (JSONObject) jsonArr2.get(0);
+	return jsonObj2.getInt("liquidity");
+}
+
+public static String getPrice(JSONObject json) { 
+	JSONArray jsonArr1 = json.getJSONArray("prices");
+	JSONObject jsonObj1 = (JSONObject) jsonArr1.get(0);
+	JSONArray jsonArr2 = json.getJSONArray("asks");
+	JSONArray jsonArr3 = json.getJSONArray("bids");
+	JSONObject jsonObj3 = (JSONObject) jsonArr3.get(0);
+	return jsonObj3.getString("price");
+}
+
+public static Integer getLiquidity(JSONObject json) { 
+	JSONArray jsonArr1 = json.getJSONArray("prices");
+	JSONObject jsonObj1 = (JSONObject) jsonArr1.get(0);
+	JSONArray jsonArr2 = json.getJSONArray("asks");
+	JSONArray jsonArr3 = json.getJSONArray("bids");
+	JSONObject jsonObj3 = (JSONObject) jsonArr3.get(0);
+	return jsonObj3.getInt("liquidity");
+}
+
+public static Boolean getTradeable(JSONObject json) { 
+	JSONArray jsonArr1 = json.getJSONArray("prices");
+	JSONObject jsonObj1 = (JSONObject) jsonArr1.get(0);
+	JSONArray jsonArr2 = json.getJSONArray("asks");
+	JSONArray jsonArr3 = json.getJSONArray("bids");
+	return jsonObj1.getBoolean("tradeable");
+}
+
+public static String getInstrument(JSONObject json) { 
+	JSONArray jsonArr1 = json.getJSONArray("prices");
+	JSONObject jsonObj1 = (JSONObject) jsonArr1.get(0);
+	JSONArray jsonArr2 = json.getJSONArray("asks");
+	JSONArray jsonArr3 = json.getJSONArray("bids");
+	return jsonObj1.getString("instrument");
+}
+
+public static String getTime(JSONObject json) { 
+	JSONArray jsonArr1 = json.getJSONArray("prices");
+	JSONObject jsonObj1 = (JSONObject) jsonArr1.get(0);
+	JSONArray jsonArr2 = json.getJSONArray("asks");
+	JSONArray jsonArr3 = json.getJSONArray("bids");
+	return jsonObj1.getString("time");
+}
+
+public static String getType(JSONObject json) { 
+	JSONArray jsonArr1 = json.getJSONArray("prices");
+	JSONObject jsonObj1 = (JSONObject) jsonArr1.get(0);
+	JSONArray jsonArr2 = json.getJSONArray("asks");
+	JSONArray jsonArr3 = json.getJSONArray("bids");
+	return jsonObj1.getString("type");
+}
+
+public static String getStatus(JSONObject json) { 
+	JSONArray jsonArr1 = json.getJSONArray("prices");
+	JSONObject jsonObj1 = (JSONObject) jsonArr1.get(0);
+	JSONArray jsonArr2 = json.getJSONArray("asks");
+	JSONArray jsonArr3 = json.getJSONArray("bids");
+	return jsonObj1.getString("status");
+}
+
