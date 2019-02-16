@@ -1,6 +1,7 @@
 # Maven
 log/
 target/
+*.txt
 
 # Eclipse
 .classpath
